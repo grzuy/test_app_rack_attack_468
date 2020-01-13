@@ -62,3 +62,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "rack-attack", "= 6.0.0"
+
+gem "redis", "= 4.1.3"
