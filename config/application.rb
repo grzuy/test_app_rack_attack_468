@@ -17,5 +17,7 @@ module TestAppRackAttack468
     # the framework and any gems in your application.
 
     config.middleware.use Rack::Attack
+
+    config.ratelimit = {}
   end
 end

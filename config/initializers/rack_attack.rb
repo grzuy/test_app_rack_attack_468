@@ -1,14 +1,15 @@
-require 'prometheus_exporter/client'
+# require 'prometheus_exporter/client'
 
 class Rack::Attack
 
-  if Rails.env.staging? || Rails.env.production?
-    redis_url_with_auth = ENV['REDIS_URL'].sub "redis://", "rediss://user:#{ENV['REDIS_AUTH']}@"
-    Rack::Attack.cache.store = ActiveSupport::Cache::RedisStore.new(redis_url_with_auth, { expires_in: 90.minutes })
-  end
+  # if Rails.env.staging? || Rails.env.production?
+    # redis_url_with_auth = ENV['REDIS_URL'].sub "redis://", "rediss://user:#{ENV['REDIS_AUTH']}@"
+    # Rack::Attack.cache.store = ActiveSupport::Cache::RedisStore.new(redis_url_with_auth, { expires_in: 90.minutes })
+    Rack::Attack.cache.store = ActiveSupport::Cache::RedisStore.new(expires_in: 90.minutes)
+  # end
 
-  client = PrometheusExporter::Client.default
-  gauge = client.register(:gauge , "sauron.rackattack.req_per_ip", "blocked by ip")
+  # client = PrometheusExporter::Client.default
+  # gauge = client.register(:gauge , "sauron.rackattack.req_per_ip", "blocked by ip")
 
   limit =  Rails.configuration.ratelimit["requests"] || 0
   period =  Rails.configuration.ratelimit["period"] || 1
@@ -34,7 +35,7 @@ class Rack::Attack
     attack = req.env['rack.attack.matched']
     Rails.logger.warn(event: "rack_attack_triggered", attack_type: attack, ip: req.ip, method: req.request_method, path: req.path)
     if Rails.env.production? || Rails.env.staging?
-      gauge.observe(1)
+      # gauge.observe(1)
     end
   end
 end
