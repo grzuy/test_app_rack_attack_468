@@ -1,3 +1,3 @@
 OK
-1580154161.653372 [0 127.0.0.1:39004] "get" "rack::attack:1580154161:req_per_ip_external:127.0.0.1, GET, /"
-1580154161.653998 [0 127.0.0.1:39004] "setex" "rack::attack:1580154161:req_per_ip_external:127.0.0.1, GET, /" "2" "1"
+1580154241.319503 [0 127.0.0.1:39042] "get" "rack::attack:1580154241:req_per_ip_external:127.0.0.1, GET, /"
+1580154241.319702 [0 127.0.0.1:39042] "setex" "rack::attack:1580154241:req_per_ip_external:127.0.0.1, GET, /" "2" "1"
